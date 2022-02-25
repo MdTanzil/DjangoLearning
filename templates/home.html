@@ -7,7 +7,7 @@
     
 
 {% block body %}
-
+    <a href="{% url 'feed:post' %}">Add a New Post</a> <hr> <br>
     {% for post in posts %}
     <a href="{% url 'feed:postdetailsview' post.id  %}">
         {{ post.title }} <br>
@@ -15,7 +15,7 @@
             <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
          {% endthumbnail %}
          <br>
-         </a> <br>
+    </a> <br>
     {% endfor %}
          
 {% endblock body %}
