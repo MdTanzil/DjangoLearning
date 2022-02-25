@@ -9,11 +9,13 @@
 {% block body %}
 
     {% for post in posts %}
+    <a href="{% url 'feed:postdetailsview' post.id  %}">
         {{ post.title }} <br>
         {% thumbnail post.image "200x200" crop="center" as im %}
             <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
          {% endthumbnail %}
-         <hr>
+         <br>
+         </a> <br>
     {% endfor %}
-
+         
 {% endblock body %}

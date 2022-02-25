@@ -1,1 +1,9 @@
-Details View page
+{% extends "base.html" %} 
+{% block title %} Post Details Page
+{% endblock title%} 
+
+{% block body %}
+<a href="{% url 'feed:index' %}"> Go Back</a>
+<h3>{{object.title}}</h3>
+<img src="{{object.image.url}}" height=400px width=400px crop="center" alt="">
+{% endblock body %}
