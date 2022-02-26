@@ -3,5 +3,5 @@ from django import forms
 
 class Postform(forms.Form):
 
-    title = forms.CharField()
-    image = forms.FileField()
+    title = forms.CharField(label='Add a title')
+    image = forms.FileField(label='Upload Image')

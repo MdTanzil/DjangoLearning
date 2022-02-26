@@ -2,12 +2,14 @@
 
 
 {% block body %}
+    <div class="container mt-5">
     <form action=""  method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit">Submit Post</button>
+        <button type="submit" class="btn btn-success">Submit Post</button>
     </form>   
+    </div>
 {% endblock body %}
     
 

@@ -8,21 +8,27 @@
 
 {% block body %}
 {% if messages %}
-        <ul class="messages">
+        
             {% for message in messages %}
-             <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+             <div class="bg-{% if message.tags %}{{message.tags}}{% endif %} bg-gradient">{{ message }}</div>
             {% endfor %}
-        </ul>
+        
 {% endif %}
-    <a href="{% url 'feed:post' %}">Add a New Post</a> <hr> <br>
-    {% for post in posts %}
-    <a href="{% url 'feed:postdetailsview' post.id  %}">
-        {{ post.title }} <br>
-        {% thumbnail post.image "200x200" crop="center" as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-         {% endthumbnail %}
-         <br>
-    </a> <br>
-    {% endfor %}
-         
+<div class="row">
+        
+        {% for post in posts %}
+            <div class="col-sm-6 col-md-3 p-2">
+                <div class="card" style="width: 18rem;">
+                    {% thumbnail post.image "200x200" crop="center" as im %}
+                <img src="{{ im.url }}." class="card-img-top" alt="...">
+                {% endthumbnail %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="{% url 'feed:postdetailsview' post.id  %}" class="btn btn-primary">Go Detais</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+</div>
 {% endblock body %}
