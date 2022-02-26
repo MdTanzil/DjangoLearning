@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView, DetailView, FormView
 from .models import Post
 from .forms import Postform
+from django.contrib import messages
 
 
 class HomePageView(TemplateView):
@@ -22,6 +23,10 @@ class AddPostView(FormView):
     form_class = Postform
     success_url = "/"
 
+    def dispatch(self, request, *args, **kwargs):
+        self.request = request
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
 
         new_object = Post.objects.create(
@@ -29,5 +34,7 @@ class AddPostView(FormView):
             image=form.cleaned_data['image'],
 
         )
+        messages.add_message(self.request, messages.SUCCESS,
+                             'Post Upload successfully')
 
         return super().form_valid(form)

@@ -7,6 +7,13 @@
     
 
 {% block body %}
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+             <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+{% endif %}
     <a href="{% url 'feed:post' %}">Add a New Post</a> <hr> <br>
     {% for post in posts %}
     <a href="{% url 'feed:postdetailsview' post.id  %}">
